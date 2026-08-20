@@ -1,10 +1,7 @@
 name: Build and Deploy to ECS Express Mode Service
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch: {}
 
 env:
   AWS_REGION: ${{ vars.AWS_REGION }}
@@ -17,8 +14,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment:
-      production
+    environment: production
 
     # OIDC authentication requires write permission for id-token
     permissions:
