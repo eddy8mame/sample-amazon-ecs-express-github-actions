@@ -17,8 +17,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment:
-      production
+    environment: production
 
     # OIDC authentication requires write permission for id-token
     permissions:
@@ -28,6 +27,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Debug OIDC claims
+        run: |
+          curl -sH "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" \
+            | jq -r '.value' | cut -d. -f2 | base64 -d 2>/dev/null | jq '{sub, aud, iss}'
 
       # Authenticate with AWS using OIDC
       - name: Configure AWS credentials
