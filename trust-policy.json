@@ -12,7 +12,7 @@
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
         },
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:eddy8mame/sample-amazon-ecs-express-github-actions:*"
+          "token.actions.githubusercontent.com:sub": "repo:eddy8mame@132296192/sample-amazon-ecs-express-github-actions@1341038506:*"
         }
       }
     }
